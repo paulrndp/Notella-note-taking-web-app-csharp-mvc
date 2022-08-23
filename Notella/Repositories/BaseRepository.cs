@@ -1,6 +1,7 @@
 ﻿using Notella.Data;
 using Notella.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Notella.Repositories
 {
@@ -13,6 +14,7 @@ namespace Notella.Repositories
         public BaseRepository(ApplicationDbContext db)
         {
             _db = db;
+            _table = db.Set<T>();
         }
 
         public async Task Create(T t)
@@ -24,6 +26,7 @@ namespace Notella.Repositories
         public async Task<IEnumerable<T>> GetAll()
         {
             return await _table.ToListAsync();
+
         }
 
         public async Task<T> GetOne(object id)

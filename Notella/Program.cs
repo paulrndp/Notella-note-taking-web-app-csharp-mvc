@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Notella.Data;
+using Notella.Contracts;
+using Notella.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
-
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

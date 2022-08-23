@@ -1,21 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Notella.Models;
 using System.Diagnostics;
+using Notella.Repositories;
+using Notella.Contracts;
 
 namespace Notella.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IBaseRepository<Notes> _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBaseRepository<Notes> repo)
         {
-            _logger = logger;
+            _repo = repo;
         }
-
-        public IActionResult Index()
-        { 
-            return View();
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var result = await _repo.GetAll();
+            return View(result);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(Notes obj)
+        {
+            if (!ModelState.IsValid)
+                return View(obj);
+            await _repo.Create(obj);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
