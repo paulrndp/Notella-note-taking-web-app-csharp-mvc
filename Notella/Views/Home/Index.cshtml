@@ -1,8 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="py-2 d-flex justify-content-center">
+            <div class="card border-secondary card-form">
+                <div class="card-body">
+                    <div class="py-1">
+                        <img style="vertical-align:middle" src="~/post-it.png">
+                        <span>Note-Tella</span>
+                        <small class="form-text text-muted"> // We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" placeholder="Title...">
 
-<div class="text-center">
-    <h1 class="display-4">Hola</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="6" placeholder="Take a note..."></textarea>
+                    </div>
+                    <div class="text-center" style="margin:10px;">
+                        <button type="button" class="btn btn-outline-success">Add</button>
+                        <button type="button" class="btn btn-outline-secondary">Clear</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<hr />
+<div class="row">
+    <div class="col-lg-4 col-md-12">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <h4 class="card-title">Secondary card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </div>    <div class="col-lg-4 col-md-12">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <h4 class="card-title">Secondary card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </div>    <div class="col-lg-4 col-md-12">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <h4 class="card-title">Secondary card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
