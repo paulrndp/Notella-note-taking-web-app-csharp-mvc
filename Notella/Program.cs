@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Notella.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+));
 
 var app = builder.Build();
 
