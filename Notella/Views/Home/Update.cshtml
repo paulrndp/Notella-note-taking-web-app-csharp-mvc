@@ -1,54 +1,51 @@
-﻿@model IEnumerable<Notes>;
-
+﻿@model Notes
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Update";
 }
+<div class="d-flex justify-content-center">
+    <div class="py-1">
+        <img style="vertical-align:middle" src="~/post-it.png">
+        <h1>Note-Tella</h1>
+        <small class="form-text text-muted"> // A simple note-taking web app that allows for note creation, editing, and deletion.</small>
+    </div>
+</div>
 <form method="post">
     @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div class="py-2 d-flex justify-content-center">
-                <div class="card border-secondary card-form">
-                    <div class="card-body">
-                        <div class="py-1">
-                            <img style="vertical-align:middle" src="~/post-it.png">
-                            <span>Note-Tella</span>
-                            <small class="form-text text-muted"> // A simple note-taking web app that allows for note creation, editing, and deletion.</small>
+        <div class="row py-3">
+            <div class="col-lg-12 col-md-12">
+                <div class="py-2 d-flex justify-content-center">
+                    <div class="card border-secondary card-form">
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <input asp-for="Title" type="text" class="form-control" placeholder="Title...">
+                            </div>
+                            <div class="form-group">
+                                <textarea asp-for="Content" class="form-control" rows="6" placeholder="Take a note..."></textarea>
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                            <input name="Title" type="text" class="form-control" placeholder="Title...">
-
-                        </div>
-                        <div class="form-group">
-                            <textarea name="Content" class="form-control" rows="6" placeholder="Take a note..."></textarea>
-                        </div>
-                        <div class="text-center" style="margin:10px;">
-                            <button type="submit" class="btn btn-outline-success">Add</button>
-                            <button type="button" class="btn btn-outline-secondary">Clear</button>
-                        </div>
-
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="py-1 d-flex justify-content-center">
+                    <div class="card border-secondary card-form">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <a id="delete" class="btn btn-danger">Delete</a>
+
+                            <button type="button" class="btn btn-secondary float-end" onclick="window.history.go(-1); return false;">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </form>
-<hr />
-<div class="row">
-    @foreach (var item in Model.Reverse())
-    {
-    <div class="col-lg-4 col-md-12">
-        <div class="card text-white bg-secondary mb-3">
-        
-            <div class="card-body">
-                <h4 class="card-title">@item.Title</h4>
-                <small class="text-primary">@item.CreatedDateTime</small>
-                <p class="card-text">@item.Content!.Substring(0, Math.Min(item.Content.Length, 150))...</p>
-            </div>
-            <a href="@item.Id" class="stretched-link"></a>
-        </div>
-    </div>          
-    }
-  
-</div>
+<script>
+    $(document).ready(function() {
+        $("#delete").click(function() {
+            event.preventDefault();
+            window.location.href = '@Url.ActionLink("Delete", "Home", new RouteValueDictionary(new { id = Model.Id }))';
+        });
+    });
 
+</script>

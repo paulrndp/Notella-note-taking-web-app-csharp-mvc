@@ -13,3 +13,4 @@ namespace Notella.Models
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
     }
 }
+ 

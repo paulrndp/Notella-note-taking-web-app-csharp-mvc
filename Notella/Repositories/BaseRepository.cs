@@ -28,7 +28,6 @@ namespace Notella.Repositories
             return await _table.ToListAsync();
 
         }
-
         public async Task<T> GetOne(object id)
         {
             return await _table.FindAsync(id);
