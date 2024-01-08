@@ -6,10 +6,15 @@ using Notella.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
+});
+
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-));
+
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 var app = builder.Build();
 
